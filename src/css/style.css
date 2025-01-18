@@ -1,0 +1,74 @@
+:root {
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 10px;
+    height: 100%;
+}
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.projectContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 25px;
+    padding-left: 25px;
+    gap: 10px;
+}
+
+.title {
+    background-color: antiquewhite;
+}
+
+.projectViewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.listTitle:hover {
+    color: rgb(247, 7, 7);
+}
+
+.category:hover {
+    color: blueviolet;
+}
+
+.starIcon:hover {
+    color: rgb(136, 136, 136);
+}
+
+.footerContainer {
+    display: flex;
+    padding-top: 20px;
+}
+
+.showprojectform {
+    display: none;
+}
+
+.taskFormContainer {
+    display: none;
+}
+
+.mainTaskDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.iconContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
