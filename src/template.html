@@ -6,6 +6,70 @@
     <title>To-Do-List!</title>
 </head>
 <body>
-    
+    <header class="headerContainer"> 
+        <div class="header">ToDoNowU </div>
+    </header>
+    <main class="mainContainer">
+        <div class="leftPanel">
+            <div class="homeOptions"> 
+                <h2>Home</h2>
+                <div id="today" class="category">Today</div>
+                <div id="upcoming" class="category">This Week</div>
+                <div id="important" class="category">Important</div>
+            </div>
+            <div class="viewProjects">
+                <h2> Projects </h2>
+                <div class="projectTitleCollection"> 
+                </div>
+                <button class="addProject"> Add Project</button>
+                <div class="showprojectform"> 
+                    <form action="" id="addProject"> 
+                        <div class="inputField"> 
+                            <label for="titleProject"> Enter Name </label>
+                            <input type="text" id="titleProject" class="input" placeholder="Title">
+                            <div class="formButtons"> 
+                                <input class="projectSub" type="submit" value="Add">
+                                <input class="projectCancel" type="button" value="Cancel">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="projectContainer"> 
+            <div class="title"> BIG TITLE</div>
+            <div class="projectViewer"> 
+                <div class="listTodos"> 
+                    <div class="taskContainer"> 
+                        <div class="taskTitle"> exampleTitle </div>
+                        <div class="taskBody"> exmapleText</div>
+                    </div>
+                    
+                    
+                    <!---add due date add delete button and add edit-->
+                </div>
+                <div class="taskFormContainer"> 
+                    <form action="" id="taskForm"> 
+                        <div class="taskInputArea"> 
+                            <label>title</label>
+                            <input type="text" id="newTaskTitle">
+                            <label>Details</label>
+                            <input type="text" id="newTaskDescription">
+                            <label>Select Date</label>
+                            <input type="date" id="dueDate">
+                            <div class="formButtons"> 
+                                <input class="taskSubBtn" type="submit" value="Add">
+                                <input class="taskCancelBtn" type="button" value="Cancel">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <button class="taskFormBtn"> add task</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footerContainer">
+        <div> lonk </div>
+    </footer>
 </body>
 </html>
