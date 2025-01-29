@@ -1,19 +1,53 @@
 :root {
+    --paddingfix: 10px;
+    --footerHeaderColor: #353f4e;
+    --backgroundColor: #2d3642;
+    --panelColor: #262b35;
+    --textColor: white;
+    --mainColor: rgb(45, 109, 90);
+
     
+}
+
+html{
+    width: 100%;
+    height: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    background-color: var(--backgroundColor);
     margin: 0;
-    padding: 10px;
+    padding: 0;
     height: 100%;
 }
 
+h2 {
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: solid 2px var(--textColor);
+}
 
 .mainContainer {
     display: flex;
     flex-direction: row;
+    flex-grow: 1;
+    
+}
+
+.headerContainer {
+    display: flex;
+    height: 50px;
+    background-color: var(--footerHeaderColor);
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 2px var(--mainColor);
+}
+
+.header {
+    color: var(--textColor);
+   
 }
 
 .projectContainer {
@@ -22,11 +56,24 @@ body {
     flex: 1;
     padding-top: 25px;
     padding-left: 25px;
+    padding-right: 25px;
     gap: 10px;
 }
 
+.leftPanel {
+    background-color: var(--panelColor);
+    color: var(--textColor);
+    padding-right: 30px;
+    padding: var(--paddingfix);
+    min-width: 210px;
+    max-width: 210px;
+
+}
+
 .title {
-    background-color: antiquewhite;
+    background-color: var(--panelColor);
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .projectViewer {
@@ -36,13 +83,40 @@ body {
     gap: 10px;
 }
 
+.projEditCon {
+    display: flex;
+    display: none;
+}
+
+.listTitle {
+    display: flex;
+    gap: 5px;
+}
+
+.listTitle {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.projectContainer {
+    color: white;
+}
+
 .listTitle:hover {
-    color: rgb(247, 7, 7);
+    background-color: var(--mainColor);
+}
+
+.category {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
 }
 
 .category:hover {
-    color: blueviolet;
+    background-color: var(--mainColor);
 }
+
 
 .starIcon:hover {
     color: rgb(136, 136, 136);
@@ -50,11 +124,20 @@ body {
 
 .footerContainer {
     display: flex;
+    color: white;
+    background-color: var(--footerHeaderColor);
     padding-top: 20px;
+    padding: var(--paddingfix);
+    flex-shrink: 0;
 }
 
 .showprojectform {
     display: none;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
 }
 
 .taskFormContainer {
@@ -71,4 +154,75 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.addProject, button:hover {
+    background-color: var(--backgroundColor);
+}
+
+.addProject {
+    padding: 5px;
+    color: white;
+    background-color: transparent;
+    border-radius: 4px;
+    border: solid 2px transparent;
+}
+
+.taskFormBtn:hover {
+    background-color: var(--panelColor);
+}
+
+.taskFormBtn {
+    padding: 5px;
+    color: white;
+    background-color: transparent;
+    border-radius: 4px;
+    border: solid 2px transparent;
+}
+
+.projectViewer {
+    display: flex;
+    background-color: var(--panelColor);
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.taskFormContainer {
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+
+}
+
+.taskInputArea{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+#titleProject {
+    height: 20px;
+}
+
+.formButtons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.projectSub, .projectCancel{
+    border-radius: 4px;
+    border: solid 2px transparent;
+    color: white;
+    padding: 2px;
+    margin-top: 10px;
+    width: 60px;
+}
+
+.projectSub {
+    background-color: rgb(44, 136, 44);
+}
+
+.projectCancel {
+    background-color: rgb(173, 27, 27);
 }

@@ -1,18 +1,20 @@
 import {dom} from "./dom";
 import { selectProject } from "./projectCreator";
+import { saveToLocalStorage } from "./localStorage";
 
 
 
 function starPressed() {
     let task = dom.selectedProject.tasks.find((task)=>task.id == this.value);
-    task.starred = !task.starred;
+    task.star = !task.star;
     let projectIndex = dom.selectedProject.index;
     let taskId = this.value;
-    if (task.starred == true) {
+    if (task.star == true) {
         let reference = new starReference(projectIndex, taskId);
         dom.importantTasks.push(reference);
         console.log("importantTasks ")
         console.log(reference)
+        
     } else {
         let currentTask = dom.importantTasks.findIndex((task) => task.id == taskId && task.index == projectIndex);
         console.log("removed Task");
@@ -30,7 +32,7 @@ function starPressed() {
             dom.importantTasks.push(reference);
         }
     }*/
-    
+    saveToLocalStorage();
 }
 
 function starReference(index, id) {
@@ -50,6 +52,7 @@ function deleteTask() {
     }
     let index = dom.selectedProject.tasks.findIndex((task) => task.id == this.value);
     dom.selectedProject.tasks.splice(index,1);
+    saveToLocalStorage();
 
 }
 
@@ -69,6 +72,7 @@ function applyEdit(id) {
             selectedTask.firstChild.firstChild.innerHTML = editTask.title;
             selectedTask.firstChild.lastChild.innerHTML = editTask.description;
             selectedTask.lastChild.firstChild.innerHTML = editTask.date;
+            saveToLocalStorage();
         }
     }
 }
@@ -79,4 +83,4 @@ function onEdit() {
     console.log(dom.selectedTask)
 }
 
-export {starPressed, deleteTask, applyEdit as editBtn, onEdit,}
+export {starPressed, deleteTask, applyEdit as editBtn, onEdit, starReference,}

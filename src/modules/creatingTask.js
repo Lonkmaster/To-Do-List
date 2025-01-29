@@ -1,11 +1,11 @@
 import {dom} from "./dom";
-import buttonProjectFormSetup from "./dom";
-import {addProjectInput, selectProject} from "./projectCreator";
 import { starPressed, deleteTask, editBtn, onEdit} from "./editingTask";
+import { saveToLocalStorage } from "./localStorage";
 
 const listenerEvent = ()=> {
     dom.taskFormBtn.addEventListener("click", () =>  {
         dom.taskFormContainer.style.display = "block";
+        dom.taskFormBtn.style.display = "none";
     });  
 
     dom.taskSubBtn.addEventListener("click", () => {
@@ -13,14 +13,17 @@ const listenerEvent = ()=> {
             isEditing = false;
             editBtn(dom.selectedTask);
             dom.taskFormContainer.style.display = "none";
+            dom.taskFormBtn.style.display = "display";
             
         } else {
             addTask();
         }
 
+        dom.taskFormBtn.style.display = "flex";
         dom.newTaskTitle.value = "";
         dom.newTaskDescription.value = "";
         event.preventDefault();
+
     });
 
     dom.taskCancelBtn.addEventListener("click", () => {
@@ -28,11 +31,24 @@ const listenerEvent = ()=> {
         dom.newTaskDescription.value = "";
         dom.taskFormContainer.style.display = "none";
         isEditing = false
+        dom.taskFormBtn.style.display = "flex";
+
     });
 };
 
 let isEditing = false;
-let defaultId = 1;
+let defaultId = loadDefaultId();
+
+function saveDefaultId() {
+    localStorage.defaultId = JSON.stringify(defaultId);
+}
+
+function loadDefaultId() {
+    if (localStorage.defaultId == undefined) {
+        return 1;
+    }
+    return JSON.parse(localStorage.defaultId);
+}
 
 function createTask(title, description, date, id) {
     this.title = title;
@@ -47,6 +63,7 @@ const addTask = () => {
     let description = dom.newTaskDescription.value;
     let dueDate = dom.dueDate.value;
 
+
     if (title == "" && description == "") {
         alert("title and description must be filled in");
     } else {
@@ -56,16 +73,17 @@ const addTask = () => {
 
         let task = new createTask(title, description, dueDate, taskId);
 
+        console.log(dom.selectedProject);
         dom.selectedProject.tasks.push(task);
         displayTask(task);
         dom.taskFormContainer.style.display = "none";
-        console.log(dueDate);
+        saveToLocalStorage();
+        saveDefaultId();
         
     }
 };
 
 function displayTask(task) {
-
     let mainTaskDiv = document.createElement("div");
     mainTaskDiv.classList.add("mainTaskDiv");
     mainTaskDiv.id = `task${task.id}`;
@@ -126,7 +144,7 @@ function displayTask(task) {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
-    deleteBtn.value = task.id
+    deleteBtn.value = task.id;
     editOptions.appendChild(deleteBtn);
     deleteBtn.addEventListener("click", deleteTask);
 
