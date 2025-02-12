@@ -1,10 +1,17 @@
 import {dom} from "./dom";
-import { selectProject } from "./projectCreator";
+import { isImportantTrue, onImportantSelected } from "./projectCreator";
 import { saveToLocalStorage } from "./localStorage";
 
 
 
 function starPressed() {
+
+    //let mainTaskDivFind = document.querySelector(`#task${this.value}`);
+    //et imageStyle = mainTaskDivFind.children[mainTaskDivFind.children.length-1].children[1];
+
+    //imageStyle.style.backgroundImage = "url(/images/dots-vertical-svgrepo-com.svg)"
+    //console.log(imageStyle)
+    
     let task = dom.selectedProject.tasks.find((task)=>task.id == this.value);
     task.star = !task.star;
     let projectIndex = dom.selectedProject.index;
@@ -12,15 +19,24 @@ function starPressed() {
     if (task.star == true) {
         let reference = new starReference(projectIndex, taskId);
         dom.importantTasks.push(reference);
-        console.log("importantTasks ")
-        console.log(reference)
+        //console.log("importantTasks ")
+        //console.log(reference)
+        
+        //imageStyle.style.backgroundImage.setAttribute("src", "images/plus-circle-1441-svgrepo-com.svg")
+        //console.log(imageStyle.style.backgroundImage = "url(../images/plus-circle-1441-svgrepo-com.svg)")
+
         
     } else {
         let currentTask = dom.importantTasks.findIndex((task) => task.id == taskId && task.index == projectIndex);
-        console.log("removed Task");
+        // console.log("removed Task");
         let spliced = dom.importantTasks.splice(currentTask, 1);
-        console.log(spliced);
+        //console.log(spliced);
         // delete the reference should be removed from the array
+        //imageStyle.style.backgroundImage = "url(../images/plus-circle-1441-svgrepo-com.svg)"
+        if (isImportantTrue()) {
+            onImportantSelected()
+        }
+        
     }
     /*for(let i = 0; i < dom.selectedProject.tasks.length; i++) {
         let currentTask = dom.selectedProject.tasks[i].id;
@@ -57,6 +73,7 @@ function deleteTask() {
 }
 
 function applyEdit(id) {
+   
     let tasks = dom.taskContainer.children;
     let taskId = `task${id}`;
     for(let i = 0;  i < tasks.length; i++) {

@@ -3,7 +3,6 @@ import { displayTask } from "./creatingTask";
 import { saveToLocalStorage } from "./localStorage";
 
 function selectProject(id) {
-    console.log(dom.projects);
     let project = dom.projects.find((project)=> {
         return id == project.index
     });
@@ -20,10 +19,14 @@ function selectProject(id) {
         
     }
     dom.titlePanelChange.textContent = dom.selectedProject.title;
+    isImportantClicked = false;
+
 }
 
 function onThisWeekSelected() {
+    isImportantClicked = false;
     dom.taskFormBtn.style.display = "none";
+    dom.taskFormContainer.style.display = "none";
     dom.titlePanelChange.textContent = "This Week";
     let dateOfThisWeek = new Date();
     dom.taskContainer.innerHTML = "";
@@ -41,7 +44,9 @@ function onThisWeekSelected() {
 }
 
 function onTodaySelected() {
+    isImportantClicked = false;
     dom.taskFormBtn.style.display = "none";
+    dom.taskFormContainer.style.display = "none";
     dom.titlePanelChange.textContent = "Today";
     let dateOfToday = new Date();
     dom.taskContainer.innerHTML = "";
@@ -62,9 +67,17 @@ function onTodaySelected() {
     }
 }
 
+let isImportantClicked = false; 
+function isImportantTrue() {
+    return isImportantClicked
+};
+
 function onImportantSelected() {
+
+    isImportantClicked = true;
     let vaildTasks = [];
     dom.titlePanelChange.textContent = "Important";
+    dom.taskFormContainer.style.display = "none";
     dom.taskFormBtn.style.display = "none";
     dom.taskContainer.innerHTML = "";
     for(let i = dom.importantTasks.length - 1; i >= 0; i--) {
@@ -91,13 +104,17 @@ function onImportantSelected() {
 }
 
 function onEditProject(index){
+    
+    let elementCount = document.querySelectorAll(".projectEditContainer");
+    for(let i = 0; i < elementCount.length; i++) {
+        elementCount[i].remove();
+    }
 
     let projectNameDiv = document.getElementById(`projects${index}`);
     let editContainer = document.createElement("div");
     editContainer.classList.add("projectEditContainer");
     editContainer.id = `projectEditContID${index}`;
     projectNameDiv.appendChild(editContainer);
-    
 
     let inputField = document.createElement("input");
     inputField.id = "ProjectRenameInput";
@@ -159,6 +176,8 @@ function addProjectInput() {
     selectProject(newProject.index);
     saveToLocalStorage();
     saveProjectId();
+    dom.taskFormContainer.style.display = "none";
+    
 }
 
 function projectCreator(title, index) {
@@ -188,7 +207,7 @@ function deleteProjectBtn(index) {
 }
 
 const displayProject = (project) => {
-
+    
     let projectTitle = project.title;
     const container = document.createElement("div");
     dom.titlePanelChange.textContent = project.title;
@@ -197,24 +216,30 @@ const displayProject = (project) => {
     container.id = `projects${project.index}`;
     container.addEventListener("click", function() {
         selectProject(this.id.slice(8));
+        dom.taskFormContainer.style.display = "none";
     });
     
     dom.projectTitleCollection.appendChild(container);
 
     let textWrapper = document.createElement("div");
+    textWrapper.classList.add("alignText");
     container.appendChild(textWrapper);
     textWrapper.innerHTML = projectTitle;
 
     let projectOptions = document.createElement("div");
     projectOptions.classList.add("projectOptions");
-    projectOptions.textContent = "dots";
     container.appendChild(projectOptions);
     projectOptions.addEventListener("click", ()=> {
-        if(projEditCon.style.display == "none") {
+        let check = projEditCon.style.display == "none";
+        let dotsCollection = document.querySelectorAll(".projEditCon");
+        for (let i = 0; i < dotsCollection.length; i++) {
+            dotsCollection[i].style.display = "none";
+        }
+
+        if(check) {
             let dynamicDiv = document.getElementById(`projectEditContID${project.index}`);
             if(dynamicDiv == null || dynamicDiv.style.display == "none") {
                 projEditCon.style.display = "flex";
-                console.log(dynamicDiv)
             }
         } else {
             projEditCon.style.display = "none";
@@ -252,4 +277,4 @@ const displayProject = (project) => {
     
 };
 
-export {addProjectInput, selectProject, onImportantSelected, onTodaySelected, onThisWeekSelected, displayProject};
+export {addProjectInput, selectProject, onImportantSelected, onTodaySelected, onThisWeekSelected, displayProject, isImportantTrue};

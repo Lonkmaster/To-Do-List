@@ -7,23 +7,22 @@ const listenerEvent = ()=> {
         dom.taskFormContainer.style.display = "block";
         dom.taskFormBtn.style.display = "none";
     });  
-
+    
     dom.taskSubBtn.addEventListener("click", () => {
+        event.preventDefault();
+
         if (isEditing == true) {
             isEditing = false;
             editBtn(dom.selectedTask);
             dom.taskFormContainer.style.display = "none";
             dom.taskFormBtn.style.display = "display";
-            
-        } else {
-            addTask();
+        } else if (!addTask()) {
+            return;
         }
 
         dom.taskFormBtn.style.display = "flex";
         dom.newTaskTitle.value = "";
         dom.newTaskDescription.value = "";
-        event.preventDefault();
-
     });
 
     dom.taskCancelBtn.addEventListener("click", () => {
@@ -63,9 +62,9 @@ const addTask = () => {
     let description = dom.newTaskDescription.value;
     let dueDate = dom.dueDate.value;
 
-
     if (title == "" && description == "") {
         alert("title and description must be filled in");
+        return false;
     } else {
         let currentProject = dom.selectedProject;
         let taskId = defaultId;
@@ -78,8 +77,8 @@ const addTask = () => {
         displayTask(task);
         dom.taskFormContainer.style.display = "none";
         saveToLocalStorage();
-        saveDefaultId();
-        
+        saveDefaultId();   
+        return true;
     }
 };
 
@@ -115,25 +114,36 @@ function displayTask(task) {
     dueDateValue.textContent = task.date;
     dueDateContainer.appendChild(dueDateValue);
 
-    const starIcon = document.createElement("span");
+    const starIcon = document.createElement("div");
     starIcon.addEventListener("click", starPressed);
     starIcon.classList.add("starIcon");
     starIcon.value = task.id;
-    starIcon.textContent = "starIcon";
     iconContainer.appendChild(starIcon);
 
     const editContainer = document.createElement("div");
     editContainer.classList.add("editContainer");
     iconContainer.appendChild(editContainer);
     
-    const threeDotsIcon = document.createElement("span");
-    threeDotsIcon.textContent = "Dots";
+    const threeDotsIcon = document.createElement("div");
+    threeDotsIcon.classList.add ("taskDots");
+    threeDotsIcon.addEventListener("click", () => {
+        if(editFlex == "none") {
+            editOptions.style.display = "flex";
+            editFlex = editOptions.style.display = "flex"
+        } else {
+            editOptions.style.display = "none";
+            editFlex = editOptions.style.display = "none"
+        }
+    });
     editContainer.appendChild(threeDotsIcon);
 
     const editOptions = document.createElement("div");
+    editOptions.classList.add("editOptions");
+    let editFlex = editOptions.style.display = "none";
     editContainer.appendChild(editOptions);
 
     const editBtn = document.createElement("button");
+    editBtn.classList.add("taskEditBtn")
     editBtn.textContent = "Edit";
     editBtn.value = task.id;
     editOptions.appendChild(editBtn);
@@ -143,6 +153,7 @@ function displayTask(task) {
     })
 
     const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("taskDeleteBtn");
     deleteBtn.textContent = "Delete";
     deleteBtn.value = task.id;
     editOptions.appendChild(deleteBtn);

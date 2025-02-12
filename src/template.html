@@ -13,9 +13,18 @@
         <div class="leftPanel">
             <div class="homeOptions"> 
                 <h2>Home</h2>
-                <div id="today" class="category">Today</div>
-                <div id="upcoming" class="category">This Week</div>
-                <div id="important" class="category">Important</div>
+                <div id="today" class="category"> 
+                    <div> Today</div>
+                    <img class="todayCalendar" src="./images/reshot-icon-calendar-AKPY364THL.svg" alt="today">
+                </div>
+                <div id="upcoming" class="category">
+                    <div> This Week </div>
+                    <img class="thisWeekImg" src="./images/icons8-calendar-48.png" alt="theWeek">
+                </div>
+                <div id="important" class="category">
+                    <div> Important </div>
+                    <img class="starImg" src="./images/star (1).png" alt="star">
+                </div>
             </div>
             <div class="viewProjects">
                 <h2> Projects </h2>
@@ -48,23 +57,28 @@
                     
                     <!---add due date add delete button and add edit-->
                 </div>
-                <button class="taskFormBtn"> add task</button>
             </div>
             <div class="taskFormContainer"> 
                 <form action="" id="taskForm"> 
                     <div class="taskInputArea"> 
-                        <label>title</label>
+                        <label>Title</label>
                         <input type="text" id="newTaskTitle">
                         <label>Details</label>
                         <input type="text" id="newTaskDescription">
-                        <label>Select Date</label>
+                        <label>Date</label>
                         <input type="date" id="dueDate">
-                        <div class="formButtons"> 
+                        <div class="formButtons" id="taskFormBtn"> 
                             <input class="taskSubBtn" type="submit" value="Add">
                             <input class="taskCancelBtn" type="button" value="Cancel">
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="taskFormBtnImage"> 
+                <button class="taskFormBtn"> 
+                    <div class="imageButton"> </div>
+                    add task
+                </button>
             </div>
         </div>
     </main>

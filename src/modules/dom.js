@@ -30,6 +30,7 @@ let dom = (() => {;
     dom.today = document.getElementById("today");
     dom.renameProject = document.querySelector("renameProject");
     dom.projectEditContainer = document.querySelector(".projectEditContainer");
+    dom.formButton = document.querySelector(".formButton");
     dom.projects = loadFromLocalStorage();
     dom.importantTasks = [];
     dom.selectedProject = null;
@@ -65,7 +66,9 @@ let dom = (() => {;
                 }
             }
         }
-        selectProject(0);
+        if (dom.projects.length > 0) {
+            selectProject(dom.projects[0].index);
+        }
         return
     }
 
