@@ -117,8 +117,26 @@ function displayTask(task) {
     const starIcon = document.createElement("div");
     starIcon.addEventListener("click", starPressed);
     starIcon.classList.add("starIcon");
+    starIcon.id = "on";
     starIcon.value = task.id;
+    starIcon.style.display = "none"
+
     iconContainer.appendChild(starIcon);
+
+    let starIconOff = document.createElement("div");
+    starIconOff.addEventListener("click", starPressed);
+    starIconOff.classList.add("starIconOff");
+    starIconOff.id = "off";
+    starIconOff.value = task.id;
+    iconContainer.appendChild(starIconOff);
+
+    if (task.star == true) {
+        starIconOff.style.display = "none";
+        starIcon.style.display = "flex";
+    } else {
+        starIconOff.style.display = "flex";
+        starIcon.style.display = "none";
+    }
 
     const editContainer = document.createElement("div");
     editContainer.classList.add("editContainer");

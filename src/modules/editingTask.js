@@ -6,11 +6,9 @@ import { saveToLocalStorage } from "./localStorage";
 
 function starPressed() {
 
-    //let mainTaskDivFind = document.querySelector(`#task${this.value}`);
-    //et imageStyle = mainTaskDivFind.children[mainTaskDivFind.children.length-1].children[1];
-
-    //imageStyle.style.backgroundImage = "url(/images/dots-vertical-svgrepo-com.svg)"
-    //console.log(imageStyle)
+    let mainTaskDivFind = document.querySelector(`#task${this.value}`);
+    let imageStyleOne = mainTaskDivFind.children[mainTaskDivFind.children.length-1].children[1];
+    let imageStyleTwo = mainTaskDivFind.children[mainTaskDivFind.children.length-1].children[2];
     
     let task = dom.selectedProject.tasks.find((task)=>task.id == this.value);
     task.star = !task.star;
@@ -19,35 +17,21 @@ function starPressed() {
     if (task.star == true) {
         let reference = new starReference(projectIndex, taskId);
         dom.importantTasks.push(reference);
-        //console.log("importantTasks ")
-        //console.log(reference)
-        
-        //imageStyle.style.backgroundImage.setAttribute("src", "images/plus-circle-1441-svgrepo-com.svg")
-        //console.log(imageStyle.style.backgroundImage = "url(../images/plus-circle-1441-svgrepo-com.svg)")
-
+        imageStyleOne.style.display = "flex"
+        imageStyleTwo.style.display = "none"
         
     } else {
         let currentTask = dom.importantTasks.findIndex((task) => task.id == taskId && task.index == projectIndex);
+        imageStyleOne.style.display = "none"
+        imageStyleTwo.style.display = "flex"
         // console.log("removed Task");
         let spliced = dom.importantTasks.splice(currentTask, 1);
-        //console.log(spliced);
-        // delete the reference should be removed from the array
-        //imageStyle.style.backgroundImage = "url(../images/plus-circle-1441-svgrepo-com.svg)"
+
         if (isImportantTrue()) {
             onImportantSelected()
         }
         
     }
-    /*for(let i = 0; i < dom.selectedProject.tasks.length; i++) {
-        let currentTask = dom.selectedProject.tasks[i].id;
-        let currentId = this.value;
-        
-        if(currentTask == currentId) {
-            let projectIndex = dom.selectedProject.index;
-            let reference = new starReference(projectIndex, currentId);
-            dom.importantTasks.push(reference);
-        }
-    }*/
     saveToLocalStorage();
 }
 
