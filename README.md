@@ -8,5 +8,5 @@ this is a very basic ToDo-List
 *saves the projects 
 *have them starred as important
 
-site linl 
+site link
 https://lonkmaster.github.io/To-Do-List/
