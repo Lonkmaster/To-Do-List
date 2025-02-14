@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List!</title>
+<script defer src="main.js"></script></head>
+<body>
+    <header class="headerContainer"> 
+        <div class="header">ToDoNowU </div>
+    </header>
+    <main class="mainContainer">
+        <div class="leftPanel">
+            <div class="homeOptions"> 
+                <h2>Home</h2>
+                <div id="today" class="category"> 
+                    <div> Today</div>
+                    <img class="todayCalendar" src="ffae3b3cb344800cbdb7.svg" alt="today">
+                </div>
+                <div id="upcoming" class="category">
+                    <div> This Week </div>
+                    <img class="thisWeekImg" src="3fbfee24c1f277bb8fa3.png" alt="theWeek">
+                </div>
+                <div id="important" class="category">
+                    <div> Important </div>
+                    <img class="starImg" src="d0cbd94e0a4a62fc2bf4.png" alt="star">
+                </div>
+            </div>
+            <div class="viewProjects">
+                <h2> Projects </h2>
+                <div class="projectTitleCollection"> 
+                </div>
+                <button class="addProject"> Add Project</button>
+                <div class="showprojectform"> 
+                    <form action="" id="addProject"> 
+                        <div class="inputField"> 
+                            <label for="titleProject"> </label>
+                            <input type="text" id="titleProject" class="input" placeholder="Enter Project Name">
+                            <div class="formButtons"> 
+                                <input class="projectSub" type="submit" value="Add">
+                                <input class="projectCancel" type="button" value="Cancel">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="projectContainer"> 
+            <div class="title"> BIG TITLE</div>
+            <div class="projectViewer"> 
+                <div class="listTodos"> 
+                    <div class="taskContainer"> 
+                        <div class="taskTitle"> exampleTitle </div>
+                        <div class="taskBody"> exmapleText</div>
+                    </div>
+                    
+                    
+                    <!---add due date add delete button and add edit-->
+                </div>
+            </div>
+            <div class="taskFormContainer"> 
+                <form action="" id="taskForm"> 
+                    <div class="taskInputArea"> 
+                        <label>Title</label>
+                        <input type="text" id="newTaskTitle">
+                        <label>Details</label>
+                        <input type="text" id="newTaskDescription">
+                        <label>Date</label>
+                        <input type="date" id="dueDate">
+                        <div class="formButtons" id="taskFormBtn"> 
+                            <input class="taskSubBtn" type="submit" value="Add">
+                            <input class="taskCancelBtn" type="button" value="Cancel">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="taskFormBtnImage"> 
+                <button class="taskFormBtn"> 
+                    <div class="imageButton"> </div>
+                    add task
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer class="footerContainer">
+        <div> lonk </div>
+    </footer>
+</body>
+</html>
